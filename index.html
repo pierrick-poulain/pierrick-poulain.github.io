@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pierrick Poulain — Mini site CV</title>
+  <meta name="description" content="Mini site CV de Pierrick Poulain : compétences, projets, parcours et contacts." />
+  <meta property="og:title" content="Pierrick Poulain — Mini site CV" />
+  <meta property="og:description" content="Ingénieur Énergie & Systèmes Électriques — projets, compétences, contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="IMG_20230510_122158.jpg" />
+  <meta name="theme-color" content="#38bdf8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #101827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8; /* bleu clair */
+      --chip: #1f2a44;
+      --shadow: 0 10px 30px rgba(2,6,23,.35);
+      --radius: 20px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569; --chip:#f1f5f9; }
+    }
+    * { box-sizing: border-box }
+    html,body { margin:0; padding:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px }
+    header.hero { position:relative; isolation:isolate; display:grid; grid-template-columns: 120px 1fr; gap:20px; align-items:center; background: linear-gradient(135deg, color-mix(in hsl, var(--accent) 20%, transparent), transparent 40%), var(--panel); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); overflow:hidden }
+    .hero::after{ content:""; position:absolute; inset:-2px; z-index:-1; background: conic-gradient(from 180deg, color-mix(in hsl, var(--accent) 60%, transparent), transparent 40%); filter: blur(24px); opacity:.35 }
+    .avatar { width: 120px; height: 120px; border-radius: 16px; overflow: hidden; border:1px solid rgba(148,163,184,.25); background: #0b1220; display:flex; align-items:center; justify-content:center; font-size:48px; transition: transform .3s ease }
+    .avatar img { width:100%; height:100%; object-fit:cover; }
+    .avatar:hover{ transform: rotate(-2deg) scale(1.02) }
+    .hero h1 { margin:0; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.02em }
+    .subtitle { margin:6px 0 14px; color: var(--muted); min-height: 1.5em }
+    .badges { display:flex; flex-wrap: wrap; gap:8px }
+    .chip { background: var(--chip); color: var(--text); border:1px solid rgba(148,163,184,.25); padding:6px 10px; border-radius:999px; font-size: 12px; transition: transform .15s ease }
+    .chip:active{ transform: scale(.98) }
+    .cta { margin-top: 8px; display:flex; gap:10px; flex-wrap:wrap }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background: var(--accent); color:white; border:0; box-shadow: var(--shadow); font-weight:600; transition: transform .2s ease, filter .2s ease }
+    .btn:hover{ transform: translateY(-1px) }
+    .btn.secondary { background: transparent; color: var(--text); border:1px solid rgba(148,163,184,.35) }
+    section { margin-top:28px }
+    .section-card { background: var(--panel); border:1px solid rgba(148,163,184,.25); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); opacity:0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease }
+    .section-card.reveal{ opacity:1; transform:none }
+    h2 { margin:0 0 12px; font-size: clamp(20px, 3vw, 26px) }
+    .grid { display:grid; gap:14px }
+    .grid.projets { grid-template-columns: repeat( auto-fit, minmax(260px, 1fr) ); }
+    .proj { border:1px solid rgba(148,163,184,.25); border-radius:14px; padding:14px; background: rgba(2,6,23,.25); display:flex; flex-direction:column; gap:8px; transition: transform .2s ease }
+    .proj:hover{ transform: translateY(-2px) }
+    .proj h3 { margin:0 0 2px; font-size:18px }
+    .proj p { margin:0 0 6px; color: var(--muted) }
+    .proj .tags { display:flex; gap:6px; flex-wrap:wrap }
+    .tag { font-size:12px; padding:4px 8px; border-radius:999px; background: var(--chip); border:1px solid rgba(148,163,184,.25) }
+    .filter { display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 12px }
+    .filter button{ padding:6px 10px; border-radius:999px; border:1px solid rgba(148,163,184,.35); background:transparent; color:var(--text); cursor:pointer }
+    .filter button.active{ background: var(--accent); color:white; border-color: transparent }
+    .cols { display:grid; gap:12px; grid-template-columns: 1fr; }
+    @media (min-width: 860px) { .cols { grid-template-columns: 1fr 1fr; } }
+    footer { margin-top: 32px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; color: var(--muted) }
+    .qr-box { display:flex; align-items:center; gap:12px }
+    .qr { width: 92px; height: 92px; border-radius: 10px; overflow:hidden; background:white; display:flex; align-items:center; justify-content:center; border:1px solid rgba(148,163,184,.35) }
+    .small { font-size: 12px; color: var(--muted) }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+    .toolbar{ position: sticky; top:10px; z-index:5; display:flex; gap:10px; align-items:center; justify-content:flex-end; margin-bottom:10px }
+    .color{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:var(--panel); border:1px solid rgba(148,163,184,.25) }
+    .switch{ display:inline-flex; gap:6px; align-items:center }
+    .pdfbox{ display:grid; gap:12px }
+    .pdfframe{ width:100%; height: 600px; border:1px solid rgba(148,163,184,.25); border-radius:12px; background:#fff }
+    .pdfnotice{ color: var(--muted); font-size:14px }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pierrick Poulain",
+    "url": "",
+    "jobTitle": "Ingénieur Énergie & Systèmes Électriques",
+    "sameAs": [
+      "https://www.linkedin.com/in/pierrick-poulain-5903b322b/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Barre d'outils -->
+    <div class="toolbar">
+      <label class="color">🎨 Couleur d'accent <input id="accentPicker" type="color" value="#38bdf8" aria-label="Choisir la couleur d'accent"/></label>
+      <label class="switch">🌙 Thème <input id="themeToggle" type="checkbox" aria-label="Basculer thème clair/sombre"/></label>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="avatar" aria-hidden="false">
+        <img src="IMG_20230510_122158.jpg" alt="Pierrick Poulain"/>
+      </div>
+      <div>
+        <h1>Pierrick Poulain</h1>
+        <div class="badges">
+          <a class="chip" href="mailto:pierrick.poulain59@gmail.com">📧 pierrick.poulain59@gmail.com</a>
+          <a class="chip" href="tel:+33647011878">📞 06 47 01 18 78</a>
+          <a class="chip" href="https://www.linkedin.com/in/pierrick-poulain-5903b322b/" target="_blank" rel="me noopener">LinkedIn</a>
+          <a class="chip" href="#cv">Voir / Télécharger le CV</a>
+        </div>
+        <p class="subtitle" id="rotator" aria-live="polite">Ingénieur Énergie &amp; Systèmes Électriques • Hem (59), France</p>
+        <div class="cta">
+          <a class="btn" href="#projets" role="button">Voir mes projets</a>
+          <a class="btn secondary" href="#contact" role="button">Me contacter</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- À propos -->
+    <section class="section-card reveal" id="apropos">
+      <h2>À propos</h2>
+      <p>Je suis un jeune ingénieur en devenir, passionné par les systèmes électriques et curieux d’apprendre de nouvelles choses. J’aime découvrir d’autres cultures et travailler avec des personnes de tous horizons — encore plus lorsqu’il s’agit de projets internationaux.</p>
+      <p class="small">Basé à Hem (59), je m’oriente vers l’ingénierie des réseaux et l’optimisation de solutions énergétiques fiables et durables.</p>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets">
+      <div class="section-card reveal">
+        <h2>Projets récents</h2>
+        <div class="filter" aria-label="Filtrer par technologies">
+          <button class="active" data-filter="all">Tous</button>
+          <button data-filter="Python">Python</button>
+          <button data-filter="VBA">VBA</button>
+          <button data-filter="Power BI">Power BI</button>
+        </div>
+        <div class="grid projets" id="projectsGrid">
+          <article class="proj" data-tags="Excel,VBA,Automatisation">
+            <h3>Modèle Excel avancé (VBA)</h3>
+            <p>Conception d’un modèle central de projet intégrant des macros VBA pour automatiser les tâches répétitives et fiabiliser les données.</p>
+            <div class="tags">
+              <span class="tag">Excel</span>
+              <span class="tag">VBA</span>
+              <span class="tag">Automatisation</span>
+            </div>
+          </article>
+          <article class="proj" data-tags="Énergie,Réseaux actifs,IA,Simulation">
+            <h3>Commande de réseaux de distribution actifs</h3>
+            <p>Recherche en cours : stratégie de commande optimale pour réseaux à forte intégration de sources distribuées et intégration de modèles pour une gestion énergétique efficace.</p>
+            <div class="tags">
+              <span class="tag">Réseaux actifs</span>
+              <span class="tag">IA</span>
+              <span class="tag">Simulation</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences & Expérience -->
+    <section class="cols">
+      <div class="section-card reveal">
+        <h2>Compétences</h2>
+        <div class="grid">
+          <div>
+            <strong>Techniques</strong>
+            <p class="small">Habilitable B2/BC (travaux sous tension), VBA, outils de simulation électrique, analyse de réseaux, automatisation.</p>
+          </div>
+          <div>
+            <strong>Méthodes</strong>
+            <p class="small">Optimisation continue, amélioration des processus, esprit d’analyse, veille technologique.</p>
+          </div>
+          <div>
+            <strong>Soft skills</strong>
+            <p class="small">Communicant, déterminé, ordonné, curieux.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section-card reveal">
+        <h2>Expérience</h2>
+        <ul>
+          <li><strong>Fives DMS • Apprenti ingénieur</strong> — depuis sept. 2023<br><span class="small">Développement et optimisation d’outils Excel/VBA pour le suivi de projets. Contribution à l’amélioration continue des processus.</span></li>
+          <li><strong>Lille Automatique by Dallmayr • Stage technicien</strong><br><span class="small">Support à la maintenance et à l’automatisation des systèmes électriques industriels.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Centres d’intérêt -->
+    <section class="section-card reveal" id="interets">
+      <h2>Centres d’intérêt</h2>
+      <p>Passionné par l’évolution des nouvelles technologies, je m’intéresse particulièrement à l’impact grandissant de l’intelligence artificielle dans le domaine de l’énergie et des systèmes électriques. Je cherche à comprendre comment ces avancées améliorent la performance, la durabilité et l’efficacité des réseaux de demain.</p>
+    </section>
+
+    <!-- CV section with preview + download -->
+    <section class="section-card reveal" id="cv">
+      <h2>CV</h2>
+      <div class="pdfbox">
+        <div id="pdfNotice" class="pdfnotice">Ajoutez un fichier <code>cv.pdf</code> à la racine du site pour l’aperçu et le téléchargement.</div>
+        <object id="pdfFrame" class="pdfframe" data="cv.pdf#zoom=page-width" type="application/pdf" aria-label="Aperçu du CV"></object>
+        <div class="cta">
+          <a class="btn" id="downloadCv" href="cv.pdf" download>Télécharger le CV (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-card reveal">
+      <h2>Contact</h2>
+      <p>📧 <a href="mailto:pierrick.poulain59@gmail.com">pierrick.poulain59@gmail.com</a> • 📞 <a href="tel:+33647011878">06 47 01 18 78</a> • 📍 Hem (59), France</p>
+      <p class="small">Ou envoyez‑moi un message sur <a href="https://www.linkedin.com/in/pierrick-poulain-5903b322b/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    </section>
+
+    <!-- Footer QR placeholder -->
+    <footer>
+      <div class="qr-box">
+        <div class="qr" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="#fff"/>
+            <rect x="8" y="8" width="26" height="26" fill="#000"/>
+            <rect x="66" y="8" width="26" height="26" fill="#000"/>
+            <rect x="8" y="66" width="26" height="26" fill="#000"/>
+            <rect x="40" y="40" width="6" height="6" fill="#000"/>
+            <rect x="52" y="52" width="6" height="6" fill="#000"/>
+            <rect x="46" y="64" width="6" height="6" fill="#000"/>
+            <rect x="58" y="40" width="6" height="6" fill="#000"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Astuce QR</strong>
+          <div class="small">Quand le site sera en ligne, je générerai un QR code <em>bleu clair</em> pointant vers ton URL publique.</div>
+        </div>
+      </div>
+      <div class="small">© <span id="y"></span> Pierrick Poulain — Tous droits réservés</div>
+    </footer>
+  </div>
+
+  <script>
+    // Année auto
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Révélation au scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.section-card').forEach(el=>observer.observe(el));
+
+    // Rotateur
+    const rotator = document.getElementById('rotator');
+    const roles = [
+      'Ingénieur Énergie & Systèmes Électriques • Hem (59), France',
+      'VBA • Simulation électrique • Automatisation',
+      'Ouvert aux projets internationaux',
+      'Veille : IA & réseaux intelligents'
+    ];
+    let i = 0; setInterval(()=>{ i=(i+1)%roles.length; rotator.textContent = roles[i]; }, 2800);
+
+    // Filtres projets
+    const grid = document.getElementById('projectsGrid');
+    document.querySelectorAll('.filter button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.filter button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        grid.querySelectorAll('.proj').forEach(card=>{
+          const has = card.dataset.tags.includes(f);
+          card.style.display = (f==='all' || has) ? '' : 'none';
+        });
+      });
+    });
+
+    // Personnalisation : couleur & thème
+    const pick = document.getElementById('accentPicker');
+    pick.addEventListener('input', ()=>{
+      document.documentElement.style.setProperty('--accent', pick.value);
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if(meta) meta.setAttribute('content', pick.value);
+    });
+    const toggle = document.getElementById('themeToggle');
+    const setTheme = (dark)=>{
+      if(dark){
+        document.documentElement.style.setProperty('--bg','#0b1220');
+        document.documentElement.style.setProperty('--panel','#101827');
+        document.documentElement.style.setProperty('--text','#e5e7eb');
+        document.documentElement.style.setProperty('--muted','#94a3b8');
+        document.documentElement.style.setProperty('--chip','#1f2a44');
+      } else {
+        document.documentElement.style.setProperty('--bg','#f8fafc');
+        document.documentElement.style.setProperty('--panel','#ffffff');
+        document.documentElement.style.setProperty('--text','#0f172a');
+        document.documentElement.style.setProperty('--muted','#475569');
+        document.documentElement.style.setProperty('--chip','#f1f5f9');
+      }
+    }
+    toggle.addEventListener('change', ()=> setTheme(toggle.checked));
+
+    // CV preview: hide preview if cv.pdf absent
+    (async () => {
+      try {
+        const resp = await fetch('cv.pdf', { method: 'HEAD' });
+        const ok = resp.ok;
+        const frame = document.getElementById('pdfFrame');
+        const notice = document.getElementById('pdfNotice');
+        const btn = document.getElementById('downloadCv');
+        if (ok) {
+          notice.textContent = "Aperçu du CV (PDF). Cliquez sur le bouton pour télécharger.";
+          frame.style.display = 'block';
+          btn.style.display = 'inline-flex';
+        } else {
+          notice.textContent = "Aucun CV détecté. Déposez un fichier cv.pdf à la racine du site pour activer l’aperçu et le téléchargement.";
+          frame.style.display = 'none';
+          btn.style.display = 'none';
+        }
+      } catch(e) {
+        // En local file://, fetch HEAD peut échouer — on masque proprement
+        const frame = document.getElementById('pdfFrame');
+        const notice = document.getElementById('pdfNotice');
+        const btn = document.getElementById('downloadCv');
+        notice.textContent = "Placez votre fichier cv.pdf à la racine du site. L’aperçu s’activera automatiquement en ligne.";
+        frame.style.display = 'none';
+        btn.style.display = 'none';
+      }
+    })();
+  </script>
+</body>
+</html>
